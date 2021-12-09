@@ -32,7 +32,7 @@ const App = () => {
     <SafeAreaView style={backgroundStyle}>
       <View style={styles.col}>
         <Image
-          source={require('./assets/illustration.jpg')}
+          source={require('./assets/images/illustration.jpg')}
           style={{width: 350, height: 350}}
         />
         <Text style={styles.heading}>Time to meditate</Text>
