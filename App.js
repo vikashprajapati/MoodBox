@@ -7,18 +7,12 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  useColorScheme,
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  Button,
-} from 'react-native';
-
+import {SafeAreaView, StyleSheet, useColorScheme} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import Splash from './screens/Splash';
+import Home from './screens/Home';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -28,21 +22,16 @@ const App = () => {
     height: '100%',
   };
 
+  const Stack = createNativeStackNavigator();
+
   return (
     <SafeAreaView style={backgroundStyle}>
-      <View style={styles.col}>
-        <Image
-          source={require('./assets/images/illustration.jpg')}
-          style={{width: 350, height: 350}}
-        />
-        <Text style={styles.heading}>Time to meditate</Text>
-        <Text style={styles.heading_2}>
-          Take a breath, {'\n'} and ease your mind
-        </Text>
-        <TouchableOpacity activeOpacity={0.95} style={styles.button}>
-          <Text style={styles.text}>Let's get started</Text>
-        </TouchableOpacity>
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="home">
+          <Stack.Screen name="splash" component={Splash} />
+          <Stack.Screen name="home" component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaView>
   );
 };
